@@ -84,5 +84,3 @@ def projects(request):
     return render(request, 'projects.html', {'projects': projects, 'search_name': search_name, 'search_price': search_price})
 
 
-def admin(request):
-    return redirect('/admin/') 

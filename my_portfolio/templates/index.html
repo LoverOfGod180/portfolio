@@ -216,6 +216,65 @@
 
       .form-container button:hover {
         background-color: #3a5975;
+        
+      }
+        @media (max-width: 768px) {
+        /* Hide images on mobile */
+        .hero-image img,
+        .about-image img {
+          display: none;
+        }
+
+
+        .stat 
+        .hero {
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .hero-content {
+          text-align: center;
+          max-width: 100%;
+        }
+
+        .about-section {
+          flex-direction: column;
+          padding: 10px;
+        }
+
+        .about-content,
+        .about-image {
+          max-width: 100%;
+          text-align: center;
+        }
+
+        .form-container {
+          width: 85%;
+        }
+
+        .about-stats {
+        display: flex;
+        gap: 20px;
+      }
+
+      .stat {
+        background-color: #f9f9f9;
+        padding: 10px;
+        border-radius: 10px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        flex: 2;
+      }
+
+      .stat h2 {
+        font-size: 1.2rem;
+        color: #007bff;
+      }
+
+      .stat p {
+        font-size: 0.9rem;
+      }
+      
       }
     </style>
   </head>
@@ -236,7 +295,7 @@
           A Software Developer and Graphic Designer based in your city. I craft
           beautiful and functional solutions to meet diverse needs.
         </p>
-        <button><a href="#" id="pop" style="text-decoration: none; color: black;">Projects</a></button>
+        <button><a href="#" id="pop" style="text-decoration: none; color: black;">Admin</a></button>
       </div>
       <div class="hero-image">
         <img
@@ -251,7 +310,7 @@
         <div class="about-content">
           <h1>Our Dream is Global Learning Transformation</h1>
           <p>
-            At YourCompany, we are dedicated to revolutionizing education. With
+            At HDans, we are dedicated to revolutionizing education. With
             cutting-edge digital solutions, we empower learners and educators
             worldwide to reach their fullest potential.
           </p>
