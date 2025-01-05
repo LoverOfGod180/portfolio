@@ -153,6 +153,10 @@
           <!-- Truncate the description for better readability -->
           <p>Created at: {{ project.created_at }}</p>
           <a href="{{ project.link }}" target="_blank">View Project</a>
+
+          <a class="copy-link-btn" data-link="{{ project.link }}">
+            Copy Link
+          </a>
         </div>
         {% empty %}
         <p class="empty-state">
@@ -162,4 +166,25 @@
       </div>
     </div>
   </body>
+
+  <script>
+    document.querySelectorAll(".copy-link-btn").forEach((button) => {
+      button.addEventListener("click", function () {
+        // Create a temporary input field to copy the text
+        const input = document.createElement("input");
+        input.value = this.getAttribute("data-link");
+        document.body.appendChild(input);
+
+        // Select the input field and copy the text
+        input.select();
+        document.execCommand("copy");
+
+        // Remove the temporary input field
+        document.body.removeChild(input);
+
+        // Optionally, show an alert or change the button text to indicate the link was copied
+        alert("Link copied to clipboard!");
+      });
+    });
+  </script>
 </html>
