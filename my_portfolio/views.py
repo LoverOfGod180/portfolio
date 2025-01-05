@@ -5,11 +5,28 @@ from django.utils import timezone
 import random
 
 # Temporary storage for verification codes
+from django.shortcuts import render
+from django.core.mail import send_mail
+import random
+
+# A dictionary to temporarily store verification codes
+import random
+import string
+from django.core.mail import send_mail
+from django.shortcuts import render
+
+# A dictionary to store verification codes (can also use session or database)
+import random
+import string
+from django.core.mail import send_mail
+from django.shortcuts import render
+
 verification_codes = {}
 
+# Function to generate a random verification code
 def generate_code():
-    """Generate a 6-digit verification code."""
-    return str(random.randint(100000, 999999))
+    # Generates a 6-digit random verification code
+    return ''.join(random.choices(string.digits, k=6))
 
 def index(request):
     if request.method == "POST":
@@ -18,7 +35,7 @@ def index(request):
             email = request.POST.get("email")
             if not email:
                 return render(request, "index.html", {"error": "Email is required."})
-            
+
             # Generate and store the verification code
             code = generate_code()
             verification_codes[email] = code
@@ -30,7 +47,14 @@ def index(request):
                 "danielebong180@gmail.com",
                 [email],
             )
-            return render(request, "index.html", {"message": "Verification code sent successfully!"})
+
+            # Store the email in session to keep it after refresh
+            request.session['email'] = email
+
+            return render(request, "index.html", {
+                "info_message": "Verification code sent successfully!",  # Use a different key
+                "email": email
+            })
         
         elif "submit_form" in request.POST:
             # Handle the form submission
@@ -42,7 +66,7 @@ def index(request):
             # Validate the verification code
             if email not in verification_codes or verification_codes[email] != verification_code:
                 return render(request, "index.html", {"error": "Invalid verification code."})
-            
+
             # Send the contact email
             send_mail(
                 f"Contact Form Submission from {name}",
@@ -50,12 +74,37 @@ def index(request):
                 "danielebong180@gmail.com",
                 ["danielebong180@gmail.com"],
             )
-            
+
             # Remove the used verification code
             verification_codes.pop(email, None)
-            return render(request, "index.html", {"message": "Message sent successfully!"})
+
+            # Clear the session data after the form is submitted successfully
+            request.session.flush()
+
+            # Store the name, email, and message in the session to show them in the template
+            request.session['name'] = name
+            request.session['email'] = email
+            request.session['user_message'] = message
+
+            return render(request, "index.html", {
+                "success_message": "Message sent successfully!",  # Use a different key
+                "name": name,
+                "email": email,
+                "message": message
+            })
     
-    return render(request, "index.html")
+    # If GET request or after form submission, retrieve the session data
+    name = request.session.get('name', '')
+    email = request.session.get('email', '')
+    message = request.session.get('user_message', '')  # Use 'user_message' for the user's input
+
+    return render(request, "index.html", {
+        "name": name,
+        "email": email,
+        "message": message
+    })
+
+
 
 
 

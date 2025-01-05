@@ -141,6 +141,9 @@
           value="{{ search_price }}"
         />
         <button type="submit">Search</button>
+        <button type="submit">
+          <a href="/index/" style="color: white; text-decoration: none">Home</a>
+        </button>
       </form>
 
       <!-- Display projects -->
@@ -186,5 +189,49 @@
         alert("Link copied to clipboard!");
       });
     });
+
+    function handleFormSubmit(event) {
+      event.preventDefault(); // Prevent the default form submission and page refresh
+
+      const email = document.getElementById("email").value; // Get the email value
+
+      if (!email) {
+        document.getElementById("response-message").textContent =
+          "Email is required!";
+        return false; // Prevent further submission if email is empty
+      }
+
+      // Simulate sending the verification code (replace this logic with your actual backend call)
+      const formData = new FormData();
+      formData.append("email", email);
+      formData.append("send_code", "true"); // Include this value to differentiate the action
+
+      // Send the POST request to the server without reloading the page
+      fetch("{% url 'index' %}", {
+        // Replace with the actual view URL name
+        method: "POST",
+        body: formData,
+        headers: {
+          "X-CSRFToken": "{{ csrf_token }}", // Ensure CSRF token is included
+        },
+      })
+        .then((response) => response.json()) // Handle the JSON response
+        .then((data) => {
+          if (data.message) {
+            document.getElementById("response-message").textContent =
+              data.message; // Success message
+          } else if (data.error) {
+            document.getElementById("response-message").textContent =
+              data.error; // Error message
+          }
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+          document.getElementById("response-message").textContent =
+            "An error occurred.";
+        });
+
+      return false; // Prevent the form from submitting normally
+    }
   </script>
 </html>
