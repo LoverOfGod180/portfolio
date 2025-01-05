@@ -12,122 +12,108 @@
         color: #fff;
         display: flex;
         flex-direction: column;
-        align-items: center;
-        justify-content: center;
+        min-height: 100vh;
       }
 
       header {
         width: 100%;
-        padding: 20px;
+        padding: 0px;
         display: flex;
+        padding-top: 30px;
+        padding-bottom: 20px;
         justify-content: space-between;
         align-items: center;
-        background: none;
+        background: linear-gradient(135deg, #000, #333);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
       }
 
       header h1 {
-        font-family: "Arial", sans-serif;
         font-size: 1.5rem;
-        font-weight: normal;
-        margin-left: 77px;
+        margin: 0;
+        color: #ecc777;
+        margin-left: 40px;
       }
 
       nav {
-        margin-left: -200px;
         display: flex;
-        gap: 20px;
+        gap: 15px;
+        margin-right: 30px;
       }
 
       nav a {
         text-decoration: none;
         color: #fff;
-        margin-left: -200px;
         font-weight: bold;
-        font-size: 1rem;
+        transition: color 0.3s;
+      }
+
+      nav a:hover {
+        color: #ecc777;
       }
 
       .hero {
         display: flex;
-        flex-direction: row;
+        flex-direction: column-reverse;
         align-items: center;
-        justify-content: space-between;
-        width: 90%;
-        max-width: 1200px;
-        margin: 50px auto;
+        text-align: center;
+        padding: 40px 20px;
       }
 
-      .hero-content {
-        max-width: 50%;
-      }
-
-      .hero-content h2 {
-        font-size: 2.5rem;
-        line-height: 1.5;
+      .hero h2 {
+        font-size: 2.2rem;
+        margin-top: 140px;
         margin-bottom: 20px;
       }
 
-      .hero-content p {
+      .hero p {
         font-size: 1rem;
         line-height: 1.8;
         margin-bottom: 20px;
       }
 
-      .hero-content button {
-        background-color: #fff;
-        color: #000;
+      .hero button {
+        background-color: white;
+        color: black;
         padding: 10px 20px;
         border: none;
-        margin-top: 30px;
         cursor: pointer;
         font-size: 1rem;
         font-weight: bold;
+        margin-top: 50px;
+        border-radius: 5px;
+        transition: background-color 0.3s;
       }
 
-      .hero-image img {
+      .hero button:hover {
+        background-color: #cba257;
+      }
+
+      .hero img {
         border-radius: 50%;
-        width: 300px;
-        height: 300px;
-        margin-top: 50px;
-        margin-right: 70px;
-      }
-
-      footer {
-        margin-top: 50px;
-        padding: 20px;
-        background-color: white;
-        width: 100%;
-        color: #333;
+        width: 250px;
+        height: 250px;
+        margin: 20px 0;
       }
 
       .about-section {
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        padding: 50px;
-        max-width: 1200px;
-        margin: 0 auto;
-      }
-
-      .about-content {
-        flex: 1;
-        max-width: 50%;
-        padding: 20px;
-      }
-
-      .about-content h1 {
-        font-size: 2rem;
-        margin-bottom: 20px;
+        padding: 40px 20px;
+        background: #fff;
+        margin-top: 40px;
         color: #333;
       }
 
-      .about-content p {
-        font-size: 1rem;
-        line-height: 1.8;
+      .about-section h1 {
+        text-align: center;
         margin-bottom: 20px;
+        color: #07193a;
       }
 
       .about-stats {
         display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
         gap: 20px;
       }
 
@@ -135,146 +121,88 @@
         background-color: #f9f9f9;
         padding: 20px;
         border-radius: 10px;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         text-align: center;
         flex: 1;
+        max-width: 200px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
       }
 
       .stat h2 {
         font-size: 1.5rem;
-        color: #007bff;
-      }
-
-      .stat p {
-        font-size: 1rem;
-      }
-
-      .about-image {
-        flex: 1;
-        max-width: 50%;
-        padding: 20px;
-        margin-top: 40px;
-        text-align: center;
-      }
-
-      .about-image img {
-        width: 100%;
-        height: 100%;
-        border-radius: 10px;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-      }
-      .form-container {
-        background-color: #ffffff;
-        padding: 30px;
-        border-radius: 10px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        width: 185%;
-      }
-
-      .form-container h2 {
-        text-align: center;
-        margin-bottom: 20px;
         color: #07193a;
       }
+      #abt {
+        text-align: center;
+        margin-bottom: 40px;
+      }
 
-      /* Input Fields */
+      #contact {
+        background-color: white;
+        width: 100%;
+      }
+
+      footer {
+        text-align: center;
+        padding: 8px;
+        background-color: transparent;
+        color: white;
+        margin-top: 10px;
+      }
+
+      .form-container {
+        background-color: #fff;
+        color: black;
+        padding: 30px;
+        padding: 50px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        margin: 20px;
+      }
+
       .form-container input,
       .form-container textarea,
       .form-container button {
         width: 100%;
         padding: 10px;
         margin-bottom: 15px;
-        border: none;
+        border: 1px solid #ccc;
         border-radius: 5px;
-        font-size: 1rem;
       }
 
       .form-container button {
-        width: 102%;
-      }
-      .form-container input,
-      .form-container textarea {
-        background-color: #f3f3f3;
-        color: #333;
-      }
-
-      .form-container input:focus,
-      .form-container textarea:focus {
-        outline: none;
-        border: 2px solid #07193a;
-        background-color: #eef2f7;
-      }
-
-      /* Submit Button */
-      .form-container button {
-        background-color: #07193a;
+        background-color: rgb(20, 19, 19);
         color: #fff;
-        cursor: pointer;
         font-weight: bold;
-        transition: background-color 0.3s;
+        cursor: pointer;
+        height: 45px;
       }
 
       .form-container button:hover {
-        background-color: #3a5975;
-        
+        background-color: rgb(53, 52, 52);
       }
-        @media (max-width: 768px) {
-        /* Hide images on mobile */
-        .hero-image img,
-        .about-image img {
-          display: none;
-        }
 
-
-        .stat 
+      @media (min-width: 768px) {
         .hero {
-          flex-direction: column;
-          align-items: center;
+          flex-direction: row;
+          justify-content: space-between;
+          text-align: left;
+          padding: 60px 40px;
         }
 
-        .hero-content {
-          text-align: center;
-          max-width: 100%;
+        .hero img {
+          margin: 0;
         }
 
         .about-section {
-          flex-direction: column;
-          padding: 10px;
-        }
-
-        .about-content,
-        .about-image {
-          max-width: 100%;
-          text-align: center;
-        }
-
-        .form-container {
-          width: 85%;
+          padding: 60px 40px;
         }
 
         .about-stats {
-        display: flex;
-        gap: 20px;
-      }
-
-      .stat {
-        background-color: #f9f9f9;
-        padding: 10px;
-        border-radius: 10px;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        text-align: center;
-        flex: 2;
-      }
-
-      .stat h2 {
-        font-size: 1.2rem;
-        color: #007bff;
-      }
-
-      .stat p {
-        font-size: 0.9rem;
-      }
-      
+          gap: 30px;
+        }
+        p {
+          font-size: 15px;
+        }
       }
     </style>
   </head>
@@ -283,111 +211,84 @@
       <h1>HDans</h1>
       <nav>
         <a href="#about">About</a>
-        <a href="{% url 'projects' %}" id="projects">Projects</a>
+        <a href="#projects">Projects</a>
         <a href="#contact">Contact</a>
       </nav>
     </header>
 
     <section class="hero">
-      <div class="hero-content">
+      <div>
         <h2>Hi, I'm HDans</h2>
         <p>
           A Software Developer and Graphic Designer based in your city. I craft
           beautiful and functional solutions to meet diverse needs.
         </p>
-        <button><a href="#" id="pop" style="text-decoration: none; color: black;">Admin</a></button>
+        <button id="pop">Admin</button>
       </div>
-      <div class="hero-image">
-        <img
-          src="data:image/jpeg;base64,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"
-          alt="HDans"
-        />
+    </section>
+
+    <section class="about-section" id="about">
+      <h1>About Us</h1>
+      <p id="abt">
+        At <span style="color: #ecc777; font-weight: bolder">HDans</span>, we
+        are dedicated to revolutionizing education. With cutting-edge digital
+        solutions, we empower learners and educators worldwide to reach their
+        fullest potential.
+      </p>
+
+      <div class="about-stats">
+        <div class="stat">
+          <h2>3.5</h2>
+          <p>Years of Experience</p>
+        </div>
+        <div class="stat">
+          <h2>23</h2>
+          <p>Projects Completed</p>
+        </div>
+        <div class="stat">
+          <h2>830+</h2>
+          <p>Active Learners</p>
+        </div>
+        <div class="stat">
+          <h2>100K</h2>
+          <p>Total Students</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="form-container">
+        <h2>Contact Us</h2>
+        <form>
+          <input type="text" name="name" placeholder="Your Name" required />
+          <input type="email" name="email" placeholder="Your Email" required />
+          <textarea
+            name="message"
+            placeholder="Your Message"
+            rows="5"
+            required
+          ></textarea>
+          <button type="submit">Submit</button>
+        </form>
       </div>
     </section>
 
     <footer>
-      <section class="about-section" id="about">
-        <div class="about-content">
-          <h1>Our Dream is Global Learning Transformation</h1>
-          <p>
-            At HDans, we are dedicated to revolutionizing education. With
-            cutting-edge digital solutions, we empower learners and educators
-            worldwide to reach their fullest potential.
-          </p>
-          <div class="about-stats">
-            <div class="stat">
-              <h2>3.5</h2>
-              <p>Years of Experience</p>
-            </div>
-            <div class="stat">
-              <h2>23</h2>
-              <p>Projects Completed</p>
-            </div>
-            <div class="stat">
-              <h2>830+</h2>
-              <p>Active Learners</p>
-            </div>
-            <div class="stat">
-              <h2>100K</h2>
-              <p>Total Students</p>
-            </div>
-          </div>
-        </div>
-        <div class="about-image">
-          <img
-            src="data:image/jpeg;base64,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"
-            alt="Team working together"
-          />
-        </div>
-      </section>
-
-      <section class="about-section" id="contact">
-        <div class="about-content">
-          <h1>Contact Us</h1>
-          <p>
-            At YourCompany, we are dedicated to revolutionizing education. With
-            cutting-edge digital solutions, we empower learners and educators
-            worldwide to reach their fullest potential.
-          </p>
-          
-          <div class="form-container">
-            <h2>Contact Us</h2>
-    {% if error %}
-        <p class="error">{{ error }}</p>
-    {% endif %}
-    {% if message %}
-        <p class="message">{{ message }}</p>
-    {% endif %}
-    <form method="POST">
-        {% csrf_token %}
-        <input type="text" name="name" placeholder="Your Name" required><br>
-        <input type="email" name="email" placeholder="Your Email" required><br>
-        <textarea name="message" placeholder="Your Message" rows="5" required></textarea><br>
-        <input type="text" name="verification_code" placeholder="Verification Code"><br>
-        <button type="submit" name="send_code">Send Verification Code</button>
-        <button type="submit" name="submit_form">Submit</button>
-    </form>
-            
-          </div>
-      </section>
+      <p>&copy; 2025 HDans Portfolio</p>
     </footer>
-  </body>
-  <script>
-    document.getElementById('pop').addEventListener('click', function(e) {
-      e.preventDefault(); // Prevent default action (no immediate redirect)
 
-      // Ask for the PIN
-      var pin = prompt("Please enter the PIN to access the admin dashboard:");
-
-      // Validate the PIN
-      if (pin === "5222008") {
-          // Redirect to the admin dashboard
+    <script>
+      document.getElementById("pop").addEventListener("click", function (e) {
+        e.preventDefault();
+        const pin = prompt(
+          "Please enter the PIN to access the admin dashboard:"
+        );
+        if (pin === "5222008") {
           window.location.href = "/admin/";
-      } else {
-          // If the PIN is incorrect, show an alert
+        } else {
           alert("Incorrect PIN. You cannot access the admin dashboard.");
-      }
-  });
-    
-  </script>
+        }
+      });
+    </script>
+  </body>
 </html>
