@@ -41,6 +41,11 @@
       name="twitter:image"
       content="https://hdans.onrender.com/assets/hdans-logo.png"
     />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
     <!-- Replace with your logo URL -->
 
     <style>
@@ -219,7 +224,16 @@
       .form-container button:hover {
         background-color: rgb(53, 52, 52);
       }
+      #yt {
+        margin-left: 30px;
+      }
+      #pop {
+        margin-left: 0px;
+      }
 
+      #call {
+        margin-left: 20px;
+      }
       @media (min-width: 768px) {
         .hero {
           flex-direction: row;
@@ -249,13 +263,14 @@
     <header>
       <h1>HDans</h1>
       <nav>
+        <a href="#hero">Home</a>
         <a href="#about">About</a>
         <a href="/projects/">Projects</a>
         <a href="#contact">Contact</a>
       </nav>
     </header>
 
-    <section class="hero">
+    <section class="hero" id="hero">
       <div>
         <h2>Hi, I'm HDans</h2>
         <p>
@@ -263,6 +278,7 @@
           functional solutions to meet diverse needs.
         </p>
         <button id="pop">Admin</button>
+        <button id="redirectButton">Youtube</button>
       </div>
     </section>
 
@@ -277,7 +293,7 @@
 
       <div class="about-stats">
         <div class="stat">
-          <h2>3.5</h2>
+          <h2>2.5</h2>
           <p>Years of Experience</p>
         </div>
         <div class="stat">
@@ -285,11 +301,11 @@
           <p>Projects Completed</p>
         </div>
         <div class="stat">
-          <h2>830+</h2>
+          <h2>12+</h2>
           <p>Active Learners</p>
         </div>
         <div class="stat">
-          <h2>100K</h2>
+          <h2>35</h2>
           <p>Total Students</p>
         </div>
       </div>
@@ -316,7 +332,9 @@
             value="{{ email }}"
           />
           <textarea name="message" placeholder="Your Message" rows="5" required>
-          </textarea>
+            {{ message_content }}
+            </textarea
+          >
           <input
             type="text"
             name="verification_code"
@@ -324,12 +342,19 @@
           /><br />
           <button type="submit" name="send_code">Send Verification Code</button>
 
-          <button type="submit">Submit</button>
+          <button type="submit" name="submit_form">Submit</button>
         </form>
 
-        <a href="https://www.youtube.com" style="color: black"
+        <a
+          href="https://www.youtube.com/shorts/ikjxCBtfABI?si=voubhoX9q1Ms4FL_"
+          style="color: black"
+          id="ytlink"
           >How to properly contact us</a
         >
+
+        <a href="tel:+2347078331319" id="call" style="color: black"
+          ><i class="fas fa-phone-alt" style="transform: scaleX(-1)"></i
+        ></a>
       </div>
     </section>
 
@@ -349,6 +374,16 @@
           alert("Incorrect PIN. You cannot access the admin dashboard.");
         }
       });
+
+      document.querySelector('textarea[name="message"]').value = document
+        .querySelector('textarea[name="message"]')
+        .value.trim();
+
+      document
+        .getElementById("redirectButton")
+        .addEventListener("click", function () {
+          window.location.href = "https://www.youtube.com/@HDans01";
+        });
     </script>
   </body>
 </html>

@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from.models import Projects
 from django.utils import timezone
 import random
+import string
 
 # Temporary storage for verification codes
 from django.shortcuts import render
@@ -25,16 +26,25 @@ verification_codes = {}
 
 # Function to generate a random verification code
 def generate_code():
-    # Generates a 6-digit random verification code
-    return ''.join(random.choices(string.digits, k=6))
+    """Generate a 6-digit verification code."""
+    return str(random.randint(100000, 999999))
 
 def index(request):
     if request.method == "POST":
         if "send_code" in request.POST:
             # Handle the "Send Verification Code" action
             email = request.POST.get("email")
-            if not email:
-                return render(request, "index.html", {"error": "Email is required."})
+            name = request.POST.get("name")
+            message = request.POST.get("message")
+            
+            # Ensure all required fields are filled
+            if not email or not name or not message:
+                return render(request, "index.html", {"error": "All fields are required."})
+            
+            # Store the form data in session so it persists after page refresh
+            request.session['email'] = email
+            request.session['name'] = name
+            request.session['message'] = message
 
             # Generate and store the verification code
             code = generate_code()
@@ -47,17 +57,16 @@ def index(request):
                 "danielebong180@gmail.com",
                 [email],
             )
-
-            # Store the email in session to keep it after refresh
-            request.session['email'] = email
-
+            
             return render(request, "index.html", {
-                "info_message": "Verification code sent successfully!",  # Use a different key
-                "email": email
+                "msg": "Verification code sent successfully!",
+                "email": email,
+                "name": name,
+                "message_content": message
             })
         
         elif "submit_form" in request.POST:
-            # Handle the form submission
+            # Handle the form submission after verification code
             name = request.POST.get("name")
             email = request.POST.get("email")
             message = request.POST.get("message")
@@ -67,7 +76,7 @@ def index(request):
             if email not in verification_codes or verification_codes[email] != verification_code:
                 return render(request, "index.html", {"error": "Invalid verification code."})
 
-            # Send the contact email
+            # Send the contact form submission email
             send_mail(
                 f"Contact Form Submission from {name}",
                 f"Message: {message}\nEmail: {email}",
@@ -78,31 +87,26 @@ def index(request):
             # Remove the used verification code
             verification_codes.pop(email, None)
 
-            # Clear the session data after the form is submitted successfully
-            request.session.flush()
-
-            # Store the name, email, and message in the session to show them in the template
-            request.session['name'] = name
-            request.session['email'] = email
-            request.session['user_message'] = message
+            # Clear session data after successful form submission
+            request.session.pop('email', None)
+            request.session.pop('name', None)
+            request.session.pop('message', None)
 
             return render(request, "index.html", {
-                "success_message": "Message sent successfully!",  # Use a different key
-                "name": name,
-                "email": email,
-                "message": message
+                "msg": "Message sent successfully!"
             })
-    
-    # If GET request or after form submission, retrieve the session data
-    name = request.session.get('name', '')
+
+    # Get session data to preserve input fields after refresh
     email = request.session.get('email', '')
-    message = request.session.get('user_message', '')  # Use 'user_message' for the user's input
+    name = request.session.get('name', '')
+    message_content = request.session.get('message', '')
 
     return render(request, "index.html", {
-        "name": name,
         "email": email,
-        "message": message
+        "name": name,
+        "message_content": message_content
     })
+
 
 
 
@@ -131,5 +135,3 @@ def projects(request):
     projects = projects.order_by('-created_at')
 
     return render(request, 'projects.html', {'projects': projects, 'search_name': search_name, 'search_price': search_price})
-
-
