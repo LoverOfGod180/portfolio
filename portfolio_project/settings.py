@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-v@1f8aza6b2=vvt2+i99l%l7=sbt(1b8&*ripe*u3z8np+u*om
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['hdans-pomd.onrender.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['hdans.onrender.com', 'localhost', '127.0.0.1']
 
 
 
